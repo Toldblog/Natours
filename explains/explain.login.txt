@@ -1,0 +1,45 @@
+1 --> _header.pug
+a.nav__el(href='/##login##') Log in 
+//- click Log in from header -> url append /login -> watch viewRoutes.js
+
+2 --> viewRoutes
+router.get('/##login##', authController.isLoggedIn, viewsController.##getLoginForm##); 
+// after go to the url (/login), check isLoggedIn -> call getLoginForm
+
+3 --> viewsController
+exports.getLoginForm = (req, res) => {
+  res.status(200).render('##login##', {
+    title: 'Log into your account',
+  });
+};
+// Render login.pug template -> watch login.pug
+
+4 --> login.pug
+form.form.##form--login##
+    .form__group
+        button.btn.btn--green ##Login##
+//- Click button Login will pass form--login to the index.js through bundle.js implemented in base.pug
+
+4 --> index.js
+if (##loginForm##)
+  loginForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    ##login##(email, password);
+  });
+// got form--login data to loginForm and call login function in login.js
+
+5 --> login.js
+export const login = async (email, password) => {
+  try {
+    const res = await axios({
+      method: 'POST',
+      url: 'http://127.0.0.1:3000/api/v1/users/login',
+      data: {
+        email,
+        password,
+      },
+    });
+};
+// using axios to connect with backend by sending method, url and data

@@ -1,0 +1,18 @@
+1️⃣ MVC architecture
+
+Model: Business Logic
+    - Solves the business problem
+    - Directly related to business rules, how the business works, and business needs
+    - Ex:
+        - Creating new tours in the database
+        - Check if user's password is correct
+        - Ensuring only users who bought a tour can review it
+
+Controller: Application Logic
+    - Concerned about managing requests and responses
+    - More technical aspects
+    - Bridge between model and view layers
+
+View: Presentation Logic
+
+👉🏻 👉🏻 👉🏻 Fat models/thin controllers: offload as much logic as possible into the models, and keep the controllers as simple and lean as possible
